@@ -1,10 +1,16 @@
 <?php
 
+/**
+ * Display the details of an order.
+ *
+ * Only the owner of the order can access its details.
+ *
+ * @param int $order_id Order ID.
+ *
+ * @return void
+ */
 function showOrder(int $order_id): void
 {
-    /*
-        Affiche les détails d'une commande.
-    */
     $user_id = (int) $_SESSION['id'];
 
     if ($order_id <= 0) {
@@ -29,9 +35,8 @@ function showOrder(int $order_id): void
     ];
 
     $status = $order['status'];
-    $status_label = $status_label[$status] ?? 'Inconnu';
+    $status_label = $status_labels[$status] ?? 'Inconnu';
 
-    
     $total_items = 0;
 
     foreach ($items as $item) {
@@ -41,19 +46,10 @@ function showOrder(int $order_id): void
     }
 
     view('user/account/order', [
-        'order'       => $order,
-        'items'       => $items,
-        'status'      => $status,
+        'order'        => $order,
+        'items'        => $items,
+        'status'       => $status,
         'status_label' => $status_label,
-        'total_items'  => $total_items,
+        'total_items'  => $total_items
     ]);
 }
-
-
-
-    
-
-    
-
-
-    

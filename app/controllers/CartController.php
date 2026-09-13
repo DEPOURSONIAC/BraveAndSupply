@@ -1,12 +1,17 @@
 <?php
 
+/**
+ * Add a product to the user's cart.
+ *
+ * Redirects the user to the product page after the operation.
+ *
+ * @param int $product_id Product ID.
+ * @param int $quantity Product quantity.
+ *
+ * @return void
+ */
 function addToCart(int $product_id, int $quantity = 1): void
 {
-    /*
-        Ajoute un produit au panier de l'utilisateur
-        puis le redirige vers la page du produit.
-    */
-
     if ($quantity < 1) {
         redirect("product&id=$product_id&OK=FALSE");
     }
@@ -23,16 +28,19 @@ function addToCart(int $product_id, int $quantity = 1): void
     redirect("product&id=$product_id&OK=FALSE");
 }
 
+
+/**
+ * Update the quantity of a product in the cart.
+ *
+ * @param int $product_id Product ID.
+ * @param int $quantity New product quantity.
+ *
+ * @return void
+ */
 function updateCart(int $product_id, int $quantity): void
 {
-    /*
-        Met à jour la quantité d'un produit dans le panier.
-    */
-
     if ($quantity < 1) {
-        echo json_encode([
-            'success' => false,
-        ]);
+        echo json_encode(['success' => false]);
         return;
     }
 
@@ -45,18 +53,22 @@ function updateCart(int $product_id, int $quantity): void
     $cart = getCart($user_id);
 
     echo json_encode([
-        'success'    => $updated,
-        'cart'       => $cart,
-        'cart_count' => $stats['cart_count'],
+        'success' => $updated,
+        'cart' => $cart,
+        'cart_count' => $stats['cart_count']
     ]);
 }
 
+
+/**
+ * Remove a product from the user's cart.
+ *
+ * @param int $product_id Product ID.
+ *
+ * @return void
+ */
 function removeFromCart(int $product_id): void
 {
-    /*
-        Supprime un produit du panier de l'utilisateur.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
@@ -66,18 +78,22 @@ function removeFromCart(int $product_id): void
     $cart = getCart($user_id);
 
     echo json_encode([
-        'success'    => $removed,
-        'cart'       => $cart,
-        'cart_count' => $stats['cart_count'],
+        'success' => $removed,
+        'cart' => $cart,
+        'cart_count' => $stats['cart_count']
     ]);
 }
 
+
+/**
+ * Display the user's cart.
+ *
+ * Applies the current coupon if one is stored in the session.
+ *
+ * @return void
+ */
 function showCart(): void
 {
-    /*
-        Affiche le panier de l'utilisateur.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
@@ -100,22 +116,23 @@ function showCart(): void
     }
 
     view('user/account/cart', [
-        'cart'       => $cart,
+        'cart' => $cart,
         'cart_count' => $stats['cart_count'],
-        'coupon'     => $coupon,
-        'discount'   => $discount,
+        'coupon' => $coupon,
+        'discount' => $discount
     ]);
 }
 
 
-// Coupon part
-
+/**
+ * Apply a coupon to the user's cart.
+ *
+ * @param string $code Coupon code.
+ *
+ * @return void
+ */
 function applyCouponToCart(string $code): void
 {
-    /*
-        Applique un coupon au panier de l'utilisateur.
-    */
-
     $coupon = validateCoupon($code);
 
     if ($coupon) {
@@ -127,12 +144,13 @@ function applyCouponToCart(string $code): void
 }
 
 
+/**
+ * Remove the current coupon from the cart.
+ *
+ * @return void
+ */
 function removeCouponFromCart(): void
 {
-    /*
-        Retire le coupon actuellement appliqué au panier.
-    */
-
     unset($_SESSION['coupon']);
 
     redirect('account');

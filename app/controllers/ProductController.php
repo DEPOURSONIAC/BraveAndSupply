@@ -1,11 +1,12 @@
 <?php
 
+/**
+ * Display the product catalogue.
+ *
+ * @return void
+ */
 function showCatalogue(): void
 {
-    /*
-        Affiche le catalogue.
-    */
-
     $products = getAllProducts();
 
     view('shop/catalogue', [
@@ -13,12 +14,16 @@ function showCatalogue(): void
     ]);
 }
 
+
+/**
+ * Display the products from a category.
+ *
+ * @param int $category_id Category ID.
+ *
+ * @return void
+ */
 function showCategory(int $category_id): void
 {
-    /*
-        Affiche les produits d'une catégorie.
-    */
-
     if ($category_id <= 0) {
         http_response_code(400);
         exit('Identifiant de catégorie invalide.');
@@ -36,12 +41,18 @@ function showCategory(int $category_id): void
     ]);
 }
 
+
+/**
+ * Display a product.
+ *
+ * Also loads the user's lists for the product page.
+ *
+ * @param int $product_id Product ID.
+ *
+ * @return void
+ */
 function showProduct(int $product_id): void
 {
-    /*
-        Affiche un produit.
-    */
-
     if ($product_id <= 0) {
         http_response_code(400);
         exit('Identifiant de produit invalide.');
@@ -61,6 +72,6 @@ function showProduct(int $product_id): void
 
     view('shop/product', [
         'product' => $product,
-        'lists'   => $lists,
+        'lists'   => $lists
     ]);
 }

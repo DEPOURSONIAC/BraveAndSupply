@@ -1,29 +1,37 @@
 <?php
 
+/**
+ * Display the login page.
+ *
+ * @return void
+ */
 function showLogin(): void
 {
-    /*
-        Affiche la page de connexion.
-    */
-
     view('auth/login');
 }
 
+
+/**
+ * Display the registration page.
+ *
+ * @return void
+ */
 function showRegister(): void
 {
-    /*
-        Affiche la page d'inscription.
-    */
-
     view('auth/register');
 }
 
+
+/**
+ * Authenticate a user.
+ *
+ * @param string $email User email.
+ * @param string $password User password.
+ *
+ * @return void
+ */
 function login(string $email, string $password): void
 {
-    /*
-        Authentifie un utilisateur.
-    */
-
     if ($email === '' || $password === '') {
         exit('Champs manquants.');
     }
@@ -43,14 +51,23 @@ function login(string $email, string $password): void
     redirect('home');
 }
 
-function register(string $name, string $email, string $address, string $password, string $password_confirm): void {
-    /*
-        Inscrit un nouvel utilisateur.
 
-        Vérifie les informations saisies,
-        crée le compte puis connecte l'utilisateur.
-    */
-
+/**
+ * Register a new user.
+ *
+ * Validates the submitted information, creates the account,
+ * then logs the user in.
+ *
+ * @param string $name User name.
+ * @param string $email User email.
+ * @param string $address User address.
+ * @param string $password User password.
+ * @param string $password_confirm Password confirmation.
+ *
+ * @return void
+ */
+function register(string $name, string $email, string $address, string $password, string $password_confirm): void
+{
     if ($name === '' || $email === '' || $address === '' || $password === '' || $password_confirm === '') {
         exit('Champs manquants.');
     }
@@ -74,24 +91,25 @@ function register(string $name, string $email, string $address, string $password
     redirect('home');
 }
 
+
+/**
+ * Log out the current user.
+ *
+ * @return void
+ */
 function logout(): void
 {
-    /*
-        Déconnecte l'utilisateur.
-    */
-
-    // Vide les données de session.
+    // Clear session data.
     $_SESSION = [];
 
-    // Supprime le cookie de session.
+    // Delete the session cookie.
     if (ini_get('session.use_cookies')) {
-
         $params = session_get_cookie_params();
 
         setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
     }
 
-    // Détruit la session.
+    // Destroy the session.
     session_destroy();
 
     redirect('login');

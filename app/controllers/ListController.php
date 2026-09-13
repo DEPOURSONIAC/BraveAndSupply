@@ -1,31 +1,35 @@
 <?php
 
+/**
+ * Display the user's lists.
+ *
+ * This section is loaded dynamically with AJAX
+ * from the account page.
+ *
+ * @return void
+ */
 function showLists(): void
 {
-    /*
-        Affiche les listes de l'utilisateur.
-
-        Cette section est destinée à être chargée dynamiquement(AJAX)
-        depuis la page du compte.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
     $lists = getLists($user_id);
 
     view('user/account/lists', [
-        'lists' => $lists,
+        'lists' => $lists
     ]);
 }
 
+
+/**
+ * Display the products from a user's list.
+ *
+ * @param int $list_id List ID.
+ *
+ * @return void
+ */
 function showList(int $list_id): void
 {
-    /*
-        Affiche les produits d'une liste
-        de l'utilisateur connecté.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
@@ -38,26 +42,27 @@ function showList(int $list_id): void
 
     view('user/account/list', [
         'products' => $products,
-        'list_id' => $list_id,
+        'list_id' => $list_id
     ]);
 }
 
+
+/**
+ * Create a new list for the current user.
+ *
+ * @param string $name List name.
+ *
+ * @return void
+ */
 function createList(string $name): void
 {
-    /*
-        Crée une nouvelle liste
-        pour l'utilisateur connecté.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
     $name = trim($name);
-
     $success = false;
 
     if ($name !== '') {
-
         $created = insertList($user_id, $name);
 
         if ($created) {
@@ -67,24 +72,25 @@ function createList(string $name): void
 
     header('Content-Type: application/json');
 
-    echo json_encode([
-        'success' => $success]);
+    echo json_encode(['success' => $success]);
 }
 
+
+/**
+ * Delete a list from the current user's account.
+ *
+ * @param int $list_id List ID.
+ *
+ * @return void
+ */
 function deleteList(int $list_id): void
 {
-
-    /*
-        Supprime une liste de l'utilisateur connecté.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
     $success = false;
 
     if ($list_id > 0) {
-
         $deleted = removeList($user_id, $list_id);
 
         if ($deleted) {
@@ -94,17 +100,20 @@ function deleteList(int $list_id): void
 
     header('Content-Type: application/json');
 
-    echo json_encode([
-        'success' => $success]);
+    echo json_encode(['success' => $success]);
 }
 
+
+/**
+ * Add a product to a user's list.
+ *
+ * @param int $product_id Product ID.
+ * @param int $list_id List ID.
+ *
+ * @return void
+ */
 function addToList(int $product_id, int $list_id): void
 {
-    /*
-        Ajoute un produit dans une liste
-        de l'utilisateur connecté.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
@@ -123,13 +132,17 @@ function addToList(int $product_id, int $list_id): void
     redirect('account');
 }
 
+
+/**
+ * Remove a product from a user's list.
+ *
+ * @param int $product_id Product ID.
+ * @param int $list_id List ID.
+ *
+ * @return void
+ */
 function removeFromList(int $product_id, int $list_id): void
 {
-    /*
-        Retire un produit d'une liste
-        de l'utilisateur connecté.
-    */
-
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 

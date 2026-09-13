@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Display the admin dashboard.
+ *
+ * @return void
+ */
 function showAdmin(): void
 {
     $stats = getAdminStats();
@@ -13,6 +18,12 @@ function showAdmin(): void
     ]);
 }
 
+
+/**
+ * Display the admin users page.
+ *
+ * @return void
+ */
 function showAdminUsers(): void
 {
     $users = getAllUsers();
@@ -22,6 +33,12 @@ function showAdminUsers(): void
     ]);
 }
 
+
+/**
+ * Display the admin products page.
+ *
+ * @return void
+ */
 function showAdminProducts(): void
 {
     $products = getAllProducts();
@@ -31,6 +48,12 @@ function showAdminProducts(): void
     ]);
 }
 
+
+/**
+ * Display the admin orders page.
+ *
+ * @return void
+ */
 function showAdminOrders(): void
 {
     $orders = getAllOrders();
@@ -40,6 +63,14 @@ function showAdminOrders(): void
     ]);
 }
 
+
+/**
+ * Display an admin order.
+ *
+ * @param int $id Order ID.
+ *
+ * @return void
+ */
 function showAdminOrder(int $id): void
 {
     $order = getAdminOrderById($id);

@@ -1,37 +1,44 @@
 <?php
 
+/**
+ * Display the terms and conditions page.
+ *
+ * @return void
+ */
 function showCgv(): void
 {
-    /*
-        Affiche la page des conditions générales de vente.
-    */
-
     view('legal/cgv');
 }
 
+
+/**
+ * Display the information page.
+ *
+ * @return void
+ */
 function showInfos(): void
 {
-    /*
-        Affiche la page des informations.
-    */
-
     view('legal/infos');
 }
 
+
+/**
+ * Display the legal notice page.
+ *
+ * @return void
+ */
 function showMentions(): void
 {
-    /*
-        Affiche la page des mentions légales.
-    */
-
     view('legal/mentions');
 }
 
+
+/**
+ * Display the regulations page.
+ *
+ * @return void
+ */
 function showReglement(): void
 {
-    /*
-        Affiche la page du règlement.
-    */
-
     view('legal/reglement');
 }
