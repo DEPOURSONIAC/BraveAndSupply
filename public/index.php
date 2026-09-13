@@ -1,16 +1,19 @@
 <?php
 
 /*
-    Point d'entrée principal de l'appli web.
-    Crée l'environnement puis laisse le routeur faire le sale boulot.
+    Main entry point of the web application.
+    Initializes the environment and lets the router handle the request.
 */
 
+
 // ---------------
-// AFFICHAGE DES ERREURS( à supp pour la version finale)
+// ERROR HANDLING
 // ---------------
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
+// Do not display PHP errors to users in production.
+// Errors should be logged instead.
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
 error_reporting(E_ALL);
 
 
@@ -22,16 +25,34 @@ require_once __DIR__ . '/../config/config.php';
 
 
 // ---------------
-// SESSION
+// SECURITY HEADERS
+// ---------------
+
+// Force HTTPS communication when the application is accessed through HTTPS.
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+
+
+// ---------------
+// SESSION SECURITY
 // ---------------
 
 if (session_status() === PHP_SESSION_NONE) {
+
+    // Prevent JavaScript from accessing the session cookie.
+    ini_set('session.cookie_httponly', '1');
+
+    // Only send the session cookie through HTTPS.
+    ini_set('session.cookie_secure', '1');
+
+    // Prevent the cookie from being sent in most cross-site requests.
+    ini_set('session.cookie_samesite', 'Lax');
+
     session_start();
 }
 
 
 // ---------------
-// DÉPENDANCES
+// DEPENDENCIES
 // ---------------
 
 require_once ROOT . '/config/database.php';
@@ -44,14 +65,14 @@ require_once ROOT . '/core/router.php';
 // ROUTING
 // ---------------
 
-// Récupère la route demandée
+// Get the requested route.
 $route = getRoute();
 
-// Vérifie si l'utilisateur peut accéder à cette route
+// Check whether the user is allowed to access this route.
 $route = protectRoute($route);
 
-// Récupère les paramètres nécessaires à la fonction
+// Get the arguments required by the route handler.
 $args = getRouteArguments($route);
 
-// Exécute la fonction associée à la route
+// Execute the function associated with the route.
 executeRoute($route, $args);
