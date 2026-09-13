@@ -29,7 +29,7 @@
 
             <input type="password" name="password_confirm" placeholder="Confirmer le mot de passe" autocomplete="new-password" minlength="8" required>
 
-            <input type="text" name="address" placeholder="Adresse (optionnel)" value="<?= htmlspecialchars($old['address'] ?? '', ENT_QUOTES, 'UTF-8') ?>" autocomplete="street-address">
+            <input type="text" name="address" placeholder="Adresse" value="<?= htmlspecialchars($old['address'] ?? '', ENT_QUOTES, 'UTF-8') ?>" autocomplete="street-address">
 
             <button type="submit">
                 Créer mon compte
