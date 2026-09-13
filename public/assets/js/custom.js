@@ -3,9 +3,7 @@
     "use strict";
 
 
-    /* =========================
-       CAROUSELS
-    ========================= */
+    /* ----- Carousels ----- */
 
     $('.owl-men-item').owlCarousel({
         items: 3,
@@ -68,9 +66,7 @@
 
 
 
-    /* =========================
-       HEADER AU SCROLL
-    ========================= */
+    /* ----- Header scroll ----- */
 
     $(window).scroll(function () {
 
@@ -88,11 +84,6 @@
     });
 
 
-
-    /* =========================
-       MOBILE MENU
-    ========================= */
-
     mobileNav();
 
 
@@ -105,11 +96,6 @@
     });
 
 
-
-    /* =========================
-       SCROLL ANIMATION
-    ========================= */
-
     if (typeof scrollReveal !== "undefined") {
 
         window.sr = new scrollReveal();
@@ -118,9 +104,7 @@
 
 
 
-    /* =========================
-       SCROLL DES ANCRES
-    ========================= */
+    /* ----- Scroll ----- */
 
     $('.scroll-to-section a[href^="#"]').on('click', function (e) {
 
@@ -165,7 +149,6 @@
             var href = currLink.attr("href");
 
 
-            // Ignore les liens PHP (/braveAndSupplyV2/...)
             if (!href || href.charAt(0) !== "#") {
 
                 return;
@@ -184,7 +167,6 @@
                     refElement.position().top + refElement.height() > scrollPos
                 ) {
 
-
                     $('.nav ul li a').removeClass("active");
 
                     currLink.addClass("active");
@@ -192,9 +174,7 @@
 
                 } else {
 
-
                     currLink.removeClass("active");
-
 
                 }
 
@@ -209,9 +189,7 @@
 
 
 
-    /* =========================
-       PRELOADER
-    ========================= */
+    /* ----- Preloader ----- */
 
     $(window).on('load', function () {
 
@@ -232,18 +210,12 @@
 
 
         $("#preloader").animate({
-
             opacity: '0'
-
         }, 600, function () {
-
 
             setTimeout(function () {
 
-                $("#preloader")
-                    .css("visibility", "hidden")
-                    .fadeOut();
-
+                $("#preloader").css("visibility", "hidden").fadeOut();
 
             }, 300);
 
@@ -257,9 +229,7 @@
 
 
 
-    /* =========================
-       RESIZE MOBILE MENU
-    ========================= */
+    /* ----- Resize mobile menu ----- */
 
     $(window).on('resize', function () {
 
@@ -270,32 +240,19 @@
 
 
     function mobileNav() {
-
-
         var width = $(window).width();
-
 
         $('.submenu').off('click').on('click', function () {
 
 
             if (width < 767) {
-
-
                 $('.submenu ul').removeClass('active');
 
-                $(this)
-                    .find('ul')
-                    .toggleClass('active');
-
-
+                $(this).find('ul').toggleClass('active');
             }
-
 
         });
 
-
     }
-
-
 
 })(window.jQuery);
