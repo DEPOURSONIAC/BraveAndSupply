@@ -75,7 +75,7 @@ function showProfile(): void
     $stats = getUserStats($user_id);
     $orders = getOrdersByUser($user_id);
 
-    view('user/account/profile', [
+    partial('user/account/profile', [
         'user'         => $user,
         'order_count'  => $stats['order_count'],
         'cart_count'   => $stats['cart_count'],
@@ -98,7 +98,7 @@ function showOrders(): void
     $stats = getUserStats($user_id);
     $orders = getOrdersByUser($user_id);
 
-    view('user/account/orders', [
+    partial('user/account/orders', [
         'order_count' => $stats['order_count'],
         'orders'      => $orders,
     ]);
@@ -118,7 +118,7 @@ function showReviews(): void
 
     $reviews = getReviewsByUser($user_id);
 
-    view('user/account/reviews', [
+    partial('user/account/reviews', [
         'reviews' => $reviews,
     ]);
 }

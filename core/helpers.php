@@ -19,6 +19,13 @@ function view(string $page, array $data = []): void
     
 }
 
+function partial(string $page, array $data = []): void
+{
+    extract($data);
+
+    require VIEW_PATH . '/' . $page . '.php';
+}
+
 function redirect(string $route): void
 {
     /*

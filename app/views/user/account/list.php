@@ -33,13 +33,11 @@
 
                     <?php foreach ($products as $product): ?>
 
-                        <?php
-                        $productId = (int) $product['id'];
-                        ?>
+                        <?php $productId = (int) $product['id']; ?>
 
                         <tr id="list-product-<?= $productId ?>" data-product-id="<?= $productId ?>">
 
-                            <!-- PRODUIT -->
+                            <!-- Product -->
                             <td>
 
                                 <div class="account-table-product">
@@ -55,7 +53,7 @@
                             </td>
 
 
-                            <!-- PRIX -->
+                            <!-- Price -->
                             <td style="color: black;">
 
                                 <?php if (isset($product['price'])): ?>
@@ -69,7 +67,7 @@
                             </td>
 
 
-                            <!-- RETIRER -->
+                            <!-- Remove -->
                             <td>
 
                                 <form action="<?= BASE_URL ?>?action=removeFromList" method="POST" class="list-item-remove-form">

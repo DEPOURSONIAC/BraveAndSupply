@@ -14,7 +14,7 @@ function showFavorite(): void
 
     $favorites = getFavorites($user_id);
 
-    view('shop/favorites', [
+    partial('shop/favorites', [
         'favorites' => $favorites,
     ]);
 }

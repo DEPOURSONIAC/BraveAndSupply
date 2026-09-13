@@ -1,4 +1,4 @@
-            <!-- PANIER -->
+            <!-- Cart -->
             <div class="account-section">
 
                 <div class="account-section-header">
@@ -14,7 +14,7 @@
 
                 <?php if (empty($cart['products'])): ?>
 
-                    <!-- PANIER VIDE -->
+                    <!-- Empty cart -->
                     <div class="account-empty">
 
                         <p>Votre panier est vide.</p>
@@ -28,7 +28,7 @@
 
                 <?php else: ?>
 
-                    <!-- TABLEAU DU PANIER -->
+                    <!-- Cart's board -->
                     <div class="table-responsive">
 
                         <table class="account-table">
@@ -50,7 +50,7 @@
 
                                     <tr data-product-id="<?= (int) $product['id'] ?>">
 
-                                        <!-- PRODUIT -->
+                                        <!-- Product -->
                                         <td>
 
                                             <div class="account-table-product">
@@ -66,12 +66,12 @@
                                         </td>
 
 
-                                        <!-- PRIX -->
+                                        <!-- Price -->
                                         <td style="color: black;">
                                             <?= htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8') ?> €
                                         </td>
 
-                                        <!-- QUANTITÉ -->
+                                        <!-- Quantity -->
                                         <td>
                                             <form method="post" action="<?= BASE_URL ?>?action=updateCart" class="account-qty-form" >
                                                 <input type="hidden" name="product_id" value="<?= (int) $product['id'] ?>">
@@ -93,7 +93,7 @@
                                         </td>
 
 
-                                        <!-- TOTAL PRODUIT -->
+                                        <!-- Product's total -->
                                         <td>
                                             <strong style="color: black;" class="product-total">
                                                 <?= htmlspecialchars($product['total_by_product']) ?> €
@@ -101,7 +101,7 @@
                                         </td>
 
 
-                                        <!-- SUPPRIMER -->
+                                        <!-- Remove -->
                                         <td> 
 
 

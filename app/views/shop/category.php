@@ -35,7 +35,7 @@
                                             <form action="<?= BASE_URL ?>?action=addToFavorite" method="post" class="product-action-form">
                                                 <input type="hidden" name="product_id" value="<?= (int) $product['id'] ?>" >
 
-                                                <button type="submit" class="product-action-button">
+                                                <button type="submit"class="product-action-button">
                                                     <i class="fa fa-star"></i>
                                                 </button>
                                             </form>
@@ -47,7 +47,7 @@
 
                                                 <input type="hidden" name="quantity" value="1" >
 
-                                                <button type="submit" class="product-action-button"
+                                                <button type="submit" class="product-action-button">
                                                     <i class="fa fa-shopping-cart"></i>
                                                 </button>
                                             </form>
