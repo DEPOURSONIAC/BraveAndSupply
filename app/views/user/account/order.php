@@ -1,16 +1,6 @@
-<!-- ***** Page Heading ***** -->
-<div class="page-heading">
-    <div class="inner-content">
-        <h2>Détails de la commande</h2>
-        <span>
-            Commande #<?= (int) $order['id'] ?>
-        </span>
-    </div>
-</div>
-
 <div class="container order-page">
 
-    <!-- Lien retour -->
+    <!-- Back to account -->
     <div class="row">
         <div class="col-12">
             <a href="<?= BASE_URL ?>?action=account" class="order-back-link">
@@ -20,7 +10,7 @@
         </div>
     </div>
 
-    <!-- ***** Informations commande / livraison / paiement ***** -->
+    <!-- ***** Datain the order / delivery / checkout ***** -->
     <div class="row mobile-top-fix">
 
         <!-- Informations commande -->
@@ -52,7 +42,7 @@
             </div>
         </div>
 
-        <!-- Livraison -->
+        <!-- Delivery -->
         <div class="col-lg-4 col-12 mobile-bottom-fix">
             <div class="account-section">
 
@@ -79,7 +69,7 @@
             </div>
         </div>
 
-        <!-- Paiement -->
+        <!-- Checkout -->
         <div class="col-lg-4 col-12 mobile-bottom-fix">
             <div class="account-section">
 
@@ -108,7 +98,7 @@
 
     </div>
 
-    <!-- ***** Produits commandés ***** -->
+    <!-- ***** Products in the order ***** -->
     <div class="row">
 
         <div class="col-12">
@@ -180,7 +170,7 @@
 
                 </div>
 
-                <!-- ***** Récapitulatif ***** -->
+                <!-- ***** Summ up of the order ***** -->
                 <div class="order-summary">
                     <div class="order-summary-line">
                         <span>Livraison</span>

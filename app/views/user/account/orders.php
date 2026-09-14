@@ -39,7 +39,7 @@
 
                         <?php $order_status = strtolower($order['status']); ?>
 
-                        <tr>
+                        <tr style="color: black;">
 
                             <td>
                                 <strong>

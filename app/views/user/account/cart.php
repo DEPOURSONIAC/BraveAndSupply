@@ -157,7 +157,7 @@
                     <?php endif; ?>
 
 
-                    <!-- TOTAL DU PANIER -->
+                    <!-- Card's total -->
                     <div class="account-cart-summary">
 
                         <div>

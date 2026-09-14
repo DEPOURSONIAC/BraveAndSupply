@@ -1,4 +1,3 @@
-<main>
     <div class="container favorites-page">
 
         <div class="account-section-header">
@@ -82,4 +81,3 @@
         <?php endif; ?>
 
     </div>
-</main>

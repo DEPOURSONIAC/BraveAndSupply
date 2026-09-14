@@ -1,4 +1,4 @@
-<!-- TABLEAU DE BORD -->
+<!-- Dashboard -->
 <div class="row gy-4 account-stats">
 
     <div class="col-4">
@@ -34,7 +34,7 @@
 </div>
 
 
-<!-- INFORMATIONS PERSONNELLES -->
+<!-- Privates data -->
 <div class="account-section">
 
     <div class="account-section-header">
@@ -74,7 +74,7 @@
 </div>
 
 
-<!-- DERNIÈRE COMMANDE -->
+<!-- Order's last -->
 <div class="account-order">
 
     <div class="account-section-header">
@@ -87,7 +87,7 @@
 
         <div class="account-order-box">
 
-            <!-- NUMÉRO -->
+            <!-- Number -->
             <div>
                 <span>N° commande</span>
 
@@ -97,7 +97,7 @@
             </div>
 
 
-            <!-- DATE -->
+            <!-- Date -->
             <div>
                 <span>Date</span>
 
@@ -107,7 +107,7 @@
             </div>
 
 
-            <!-- TOTAL -->
+            <!-- Total -->
             <div>
                 <span>Total</span>
 
@@ -117,7 +117,7 @@
             </div>
 
 
-            <!-- STATUT -->
+            <!-- Status -->
             <div>
 
                 <span class="account-status">
@@ -127,7 +127,7 @@
             </div>
 
 
-            <!-- DÉTAIL -->
+            <!-- Detail -->
             <a href="<?= BASE_URL ?>?action=order&id=<?= (int) $order_last['id'] ?>">
                 Voir le détail ->
             </a>

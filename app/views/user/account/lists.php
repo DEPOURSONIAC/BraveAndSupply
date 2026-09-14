@@ -52,7 +52,7 @@
 <?php endif; ?>
 
 
-<!-- CRÉATION D'UNE NOUVELLE LISTE -->
+<!-- Creatin a new list -->
 <div class="account-section list-create">
 
     <div class="account-section-header">

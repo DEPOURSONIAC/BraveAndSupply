@@ -4,7 +4,7 @@
 
         <div class="container account-container">
 
-            <!-- PROFIL -->
+            <!-- Profil -->
             <div class="account-profile">
 
                 <div class="account-avatar">
@@ -23,7 +23,7 @@
 
             </div>
 
-            <!-- CONTENU -->
+            <!-- Content -->
             <section id="account-content">
 
                 <div class="account-section">
@@ -38,45 +38,29 @@
 
                     <form action="<?= BASE_URL ?>?action=accountEdit" method="POST" class="account-edit-form">
 
-                        <!-- NOM -->
+                        <!-- Name -->
                         <div class="mb-4">
                             <label for="name">Nom</label>
 
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value="<?= htmlspecialchars($user['name'], ENT_QUOTES, 'UTF-8') ?>"
-                                required
-                            >
+                            <input type="text" id="name" name="name" value="<?= htmlspecialchars($user['name'], ENT_QUOTES, 'UTF-8') ?>" required>
                         </div>
 
-                        <!-- EMAIL -->
+                        <!-- Mail -->
                         <div class="mb-4">
                             <label for="email">Adresse e-mail</label>
 
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value="<?= htmlspecialchars($user['email'], ENT_QUOTES, 'UTF-8') ?>"
-                                required
-                            >
+                            <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email'], ENT_QUOTES, 'UTF-8') ?>" required>
                         </div>
 
-                        <!-- ADRESSE -->
+                        <!-- Adress -->
                         <div class="mb-4">
                             <label for="address">Adresse</label>
 
-                            <textarea
-                                id="address"
-                                name="address"
-                                rows="3"
-                                required
-                            ><?= htmlspecialchars($user['address'], ENT_QUOTES, 'UTF-8') ?></textarea>
+                           <textarea id="address" name="address" rows="3" required><?= htmlspecialchars(trim($user['address']), ENT_QUOTES, 'UTF-8') ?></textarea>
+                           
                         </div>
 
-                        <!-- MOT DE PASSE -->
+                        <!-- Password -->
                         <div class="account-password-section">
 
                             <h6>Modifier le mot de passe</h6>
@@ -89,16 +73,11 @@
                                 Nouveau mot de passe
                             </label>
 
-                            <input
-                                type="password"
-                                id="new_password"
-                                name="new_password"
-                                autocomplete="new-password"
-                            >
+                            <input type="password" id="new_password" name="new_password" autocomplete="new-password">
 
                         </div>
 
-                        <!-- ACTIONS -->
+                        <!-- Actions -->
                         <div class="account-form-actions">
 
                             <a href="<?= BASE_URL ?>?action=account" class="btn-secondary">
