@@ -1,9 +1,9 @@
-// ============================================================
-// ACCOUNT
-// ============================================================
+// **********
+// Account
+// **********
 
 // -----
-// Navigation entre les sections du compte
+// Switch btw others funtions
 // -----
 
 async function readAccount(event) {
@@ -49,12 +49,12 @@ async function readAccount(event) {
 }
 
 
-// ============================================================
-// PANIER
-// ============================================================
+// **********
+// Cart
+// **********
 
 // -----
-// Modification de la quantité
+// Change quantity
 // -----
 
 async function updateCart(form, quantity) {
@@ -120,8 +120,8 @@ async function updateCart(form, quantity) {
 
 
 // -----
-// Gestion des boutons + / -
-// et du champ quantité
+// Buttons + / -
+// and qunatity's form
 // -----
 
 async function changeQuantity(event) {
@@ -203,24 +203,18 @@ async function changeQuantity(event) {
 
         try {
 
-            await updateCart(
-                form,
-                quantity
-            );
+            await updateCart(form, quantity);
 
         } catch (error) {
 
-            console.error(
-                'Erreur modification quantité :',
-                error
-            );
+            console.error('Erreur modification quantité :', error );
         }
     }
 }
 
 
 // -----
-// Suppression d'un produit du panier
+// Remove a product from the cart
 // -----
 
 async function removeProductFromCart(event) {
@@ -292,12 +286,12 @@ async function removeProductFromCart(event) {
 }
 
 
-// ============================================================
-// FAVORIS
-// ============================================================
+// **********
+// Favorite
+// **********
 
 // -----
-// Suppression d'un favori
+// Remove a favorite
 // -----
 
 async function removeFavorite(event) {
@@ -355,12 +349,12 @@ async function removeFavorite(event) {
 }
 
 
-// ============================================================
-// LISTES
-// ============================================================
+// **********
+// List
+// **********
 
 // -----
-// Suppression d'une liste
+// Delete a list
 // -----
 
 async function deleteList(event) {
@@ -420,7 +414,7 @@ async function deleteList(event) {
 
 
 // -----
-// Création d'une liste
+// Create a new list
 // -----
 
 async function createList(event) {
@@ -497,12 +491,12 @@ async function createList(event) {
 }
 
 
-// ============================================================
+// **********
 // EVENTS AJAX
-// ============================================================
+// **********
 
 // -----
-// Navigation account
+// Move on account
 // -----
 
 const accountMenu =document.querySelector('.account-menu');
@@ -514,7 +508,7 @@ if (accountMenu) {
 
 
 // -----
-// Panier
+// Cart
 // -----
 
 document.addEventListener('click', changeQuantity);
@@ -522,9 +516,9 @@ document.addEventListener('click', changeQuantity);
 document.addEventListener('change', changeQuantity);
 
 
-// ============================================================
-// FORMULAIRES AJAX
-// ============================================================
+// **********
+// Ajax forms
+// **********
 
 document.addEventListener(
     'submit',
@@ -532,7 +526,6 @@ document.addEventListener(
 
         const form = event.target;
 
-        // Suppression favori
         if (
             form.matches('.favorite-remove-form')
         ) {
@@ -541,7 +534,6 @@ document.addEventListener(
             return;
         }
 
-        // Suppression d'une liste
         if (
             form.matches('.list-delete-form')
         ) {
@@ -550,7 +542,6 @@ document.addEventListener(
             return;
         }
 
-        // Création d'une liste
         if (
             form.matches('.list-create-form')
         ) {
@@ -559,7 +550,6 @@ document.addEventListener(
             return;
         }
 
-        // Suppression produit panier
         if (
             form.matches('.cart-remove-form')
         ) {
@@ -569,4 +559,3 @@ document.addEventListener(
         }
     }
 );
-
