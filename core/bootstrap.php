@@ -1,13 +1,14 @@
 <?php
 
-/*
-    Charge les fichiers de l'application.
-
-    Ordre :
-        1- Models
-        2- Controllers
-*/
-
+/**
+ * Load application files.
+ *
+ * Files are loaded in the following order:
+ * 1. Models
+ * 2. Controllers
+ *
+ * @return void
+ */
 
 // ---------------
 // MODELS
@@ -24,7 +25,7 @@ require_once MODEL_PATH . '/ProductModel.php';
 require_once MODEL_PATH . '/ReviewModel.php';
 require_once MODEL_PATH . '/UserModel.php';
 require_once MODEL_PATH . '/AdminModel.php';
-
+require_once MODEL_PATH . '/CheckoutModel.php';
 
 // ---------------
 // CONTROLLERS
@@ -42,3 +43,4 @@ require_once CONTROLLER_PATH . '/ListController.php';
 require_once CONTROLLER_PATH . '/ReviewController.php';
 require_once CONTROLLER_PATH . '/AccountEditController.php';
 require_once CONTROLLER_PATH . '/AdminController.php';
+require_once CONTROLLER_PATH . '/CheckoutController.php';
