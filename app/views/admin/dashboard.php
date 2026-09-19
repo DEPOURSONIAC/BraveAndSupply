@@ -1,12 +1,4 @@
-<?php include(INCLUDE_PATH . "/header.php"); ?>
-
 <div class="admin-stats-grid">
-
-
-
-<!-- ========================================================= -->
-<!-- Chiffre d'affaires -->
-<!-- ========================================================= -->
 
 <div class="admin-panel">
 
@@ -26,10 +18,6 @@
     <?php else: ?>
 
         <?php
-        /*
-         * Préparation des données du graphique.
-         * On regroupe le chiffre d'affaires par jour.
-         */
 
         $chart_points = array();
 
@@ -56,11 +44,6 @@
         $count = count($values);
 
 
-        /*
-         * Si aucune donnée valide n'a été trouvée,
-         * on évite de continuer avec un tableau vide.
-         */
-
         if ($count > 0) {
 
             $max = max($values);
@@ -69,10 +52,6 @@
                 $max = 1;
             }
 
-
-            /*
-             * Dimensions du graphique.
-             */
 
             $svg_w = 900;
             $svg_h = 260;
@@ -86,9 +65,6 @@
             $chart_h = $svg_h - $pad_t - $pad_b;
 
 
-            /*
-             * Distance entre les points.
-             */
 
             if ($count > 1) {
                 $step = $chart_w / ($count - 1);
@@ -97,9 +73,6 @@
             }
 
 
-            /*
-             * Calcul des coordonnées.
-             */
 
             $coords = array();
 
@@ -115,9 +88,6 @@
             }
 
 
-            /*
-             * Ligne du graphique.
-             */
 
             $line_points = '';
 
@@ -131,9 +101,7 @@
             }
 
 
-            /*
-             * Zone sous la courbe.
-             */
+
 
             $baseline_y = $pad_t + $chart_h;
 
@@ -141,21 +109,12 @@
 
             if ($count > 0) {
 
-                $area_points = $line_points
-                    . ' ' . $coords[$count - 1][0] . ',' . $baseline_y
-                    . ' ' . $coords[0][0] . ',' . $baseline_y;
+                $area_points = $line_points. ' ' . $coords[$count - 1][0] . ',' . $baseline_y. ' ' . $coords[0][0] . ',' . $baseline_y;
             }
 
 
-            /*
-             * Nombre de labels affichés sur l'axe.
-             * Maximum environ 7 labels.
-             */
 
-            $label_step = max(
-                1,
-                (int) ceil($count / 7)
-            );
+            $label_step = max(1, (int) ceil($count / 7) );
         }
         ?>
 
@@ -164,68 +123,39 @@
 
             <div class="admin-chart">
 
-                <svg
-                    viewBox="0 0 <?= $svg_w ?> <?= $svg_h ?>"
-                    preserveAspectRatio="none"
-                >
+                <svg viewBox="0 0 <?= $svg_w ?> <?= $svg_h ?>" preserveAspectRatio="none">
 
-                    <!-- Axe horizontal -->
-                    <line
-                        class="chart-axis"
-                        x1="<?= $pad_l ?>"
-                        y1="<?= $pad_t + $chart_h ?>"
-                        x2="<?= $svg_w - $pad_r ?>"
-                        y2="<?= $pad_t + $chart_h ?>"
-                    ></line>
+                    <!-- Horizontal axe  -->
+                    <line class="chart-axis" x1="<?= $pad_l ?>" y1="<?= $pad_t + $chart_h ?>" x2="<?= $svg_w - $pad_r ?>" y2="<?= $pad_t + $chart_h ?>"></line>
 
 
-                    <!-- Zone sous la courbe -->
+                    <!-- Area under the courbe -->
                     <?php if ($area_points !== ''): ?>
 
-                        <polygon
-                            class="chart-area"
-                            points="<?= htmlspecialchars($area_points, ENT_QUOTES, 'UTF-8') ?>"
-                        ></polygon>
+                        <polygon class="chart-area" points="<?= htmlspecialchars($area_points, ENT_QUOTES, 'UTF-8') ?>"></polygon>
 
                     <?php endif; ?>
 
 
-                    <!-- Ligne -->
+                    <!-- Ligns -->
                     <?php if ($line_points !== ''): ?>
 
-                        <polyline
-                            class="chart-line"
-                            points="<?= htmlspecialchars($line_points, ENT_QUOTES, 'UTF-8') ?>"
-                        ></polyline>
+                        <polyline class="chart-line" points="<?= htmlspecialchars($line_points, ENT_QUOTES, 'UTF-8') ?>"></polyline>
 
                     <?php endif; ?>
 
 
-                    <!-- Points et labels -->
+                    <!-- Points and labels -->
 
                     <?php foreach ($coords as $i => $point): ?>
 
-                        <circle
-                            class="chart-dot"
-                            cx="<?= $point[0] ?>"
-                            cy="<?= $point[1] ?>"
-                            r="3"
-                        ></circle>
+                        <circle class="chart-dot" cx="<?= $point[0] ?>" cy="<?= $point[1] ?>"r="3"></circle>
 
 
                         <?php if ($i % $label_step === 0 || $i === $count - 1): ?>
 
-                            <text
-                                class="chart-label"
-                                x="<?= $point[0] ?>"
-                                y="<?= $svg_h - 8 ?>"
-                                text-anchor="middle"
-                            >
-                                <?= htmlspecialchars(
-                                    date('d/m', strtotime($labels[$i])),
-                                    ENT_QUOTES,
-                                    'UTF-8'
-                                ) ?>
+                            <text class="chart-label" x="<?= $point[0] ?>" y="<?= $svg_h - 8 ?>" text-anchor="middle">
+                                <?= htmlspecialchars( date('d/m', strtotime($labels[$i])), ENT_QUOTES, 'UTF-8') ?>
                             </text>
 
                         <?php endif; ?>
@@ -302,9 +232,9 @@
 </div>
 
 
-<!-- ========================================================= -->
-<!-- Dernières commandes -->
-<!-- ========================================================= -->
+
+<!-- Last order -->
+
 
 <div class="admin-panel">
 
@@ -312,10 +242,7 @@
 
         <h2>Dernières commandes</h2>
 
-        <a
-            href="<?= BASE_URL ?>?action=adminOrders"
-            class="account-table-link"
-        >
+        <a href="<?= BASE_URL ?>?action=adminOrders" class="account-table-link">
             Voir tout
         </a>
 
@@ -359,22 +286,14 @@
 
                             <td>
 
-                                <?= htmlspecialchars(
-                                    $order['user_name'] ?? '—',
-                                    ENT_QUOTES,
-                                    'UTF-8'
-                                ) ?>
+                                <?= htmlspecialchars($order['user_name'] ?? '—',ENT_QUOTES,'UTF-8') ?>
 
                                 <?php if (!empty($order['user_email'])): ?>
 
                                     <br>
 
                                     <span class="admin-text-muted">
-                                        <?= htmlspecialchars(
-                                            $order['user_email'],
-                                            ENT_QUOTES,
-                                            'UTF-8'
-                                        ) ?>
+                                        <?= htmlspecialchars($order['user_email'], ENT_QUOTES, 'UTF-8') ?>
                                     </span>
 
                                 <?php endif; ?>
@@ -383,34 +302,16 @@
 
 
                             <td>
-                                <?= number_format(
-                                    (float) ($order['total_price'] ?? 0),
-                                    2,
-                                    ',',
-                                    ' '
-                                ) ?>
-                                €
+                                <?= number_format((float) ($order['total_price'] ?? 0), 2, ',', ' ' ) ?>€
                             </td>
 
 
                             <td>
 
-                                <?php
-                                $status = $order['status'] ?? 'pending';
-                                ?>
+                                <?php $status = $order['status'] ?? 'pending';?>
 
-                                <span
-                                    class="order-status order-status--<?= htmlspecialchars(
-                                        $status,
-                                        ENT_QUOTES,
-                                        'UTF-8'
-                                    ) ?>"
-                                >
-                                    <?= htmlspecialchars(
-                                        $status,
-                                        ENT_QUOTES,
-                                        'UTF-8'
-                                    ) ?>
+                                <span class="order-status order-status--<?= htmlspecialchars($status,ENT_QUOTES, 'UTF-8') ?>">
+                                    <?= htmlspecialchars($status, ENT_QUOTES, 'UTF-8') ?>
                                 </span>
 
                             </td>
@@ -420,14 +321,7 @@
 
                                 <?php if (!empty($order['created_at'])): ?>
 
-                                    <?= htmlspecialchars(
-                                        date(
-                                            'd/m/Y',
-                                            strtotime($order['created_at'])
-                                        ),
-                                        ENT_QUOTES,
-                                        'UTF-8'
-                                    ) ?>
+                                    <?= htmlspecialchars(date('d/m/Y', strtotime($order['created_at'])), ENT_QUOTES, 'UTF-8') ?>
 
                                 <?php else: ?>
 
@@ -440,10 +334,7 @@
 
                             <td>
 
-                                <a
-                                    href="<?= BASE_URL ?>?action=adminOrder&id=<?= (int) ($order['id'] ?? 0) ?>"
-                                    class="admin-btn-icon"
-                                >
+                                <a href="<?= BASE_URL ?>?action=adminOrder&id=<?= (int) ($order['id'] ?? 0) ?>" class="admin-btn-icon">
                                     <i class="fa fa-eye"></i>
                                 </a>
 
@@ -461,11 +352,5 @@
 
     <?php endif; ?>
 
-    
 
 </div>
-
-
-
-
-<?php include(INCLUDE_PATH . "/footer.php"); ?>

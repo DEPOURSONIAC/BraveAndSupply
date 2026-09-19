@@ -105,7 +105,7 @@
                                         <td> 
 
 
-                                            <form action="<?= BASE_URL ?>?action=removeFromCart" method="POST" class="account-remove-form" onsubmit="removeProductFromCart(event)">
+                                            <form action="<?= BASE_URL ?>?action=removeFromCart" method="POST" class="cart-remove-form" onsubmit="removeProductFromCart(event)">
 
                                                 <input type="hidden" name="product_id" value="<?= (int) $product['id'] ?>">
 

@@ -1,5 +1,3 @@
-<?php include( INCLUDE_PATH . "/header.php"); ?>
-
 <div class="admin-panel admin-orders">
     <div class="admin-panel-head">
         <h2>Commandes (<?= count($orders) ?>)</h2>
@@ -56,5 +54,3 @@
 
     <?php endif; ?>
 </div>
-
-<?php include( INCLUDE_PATH . "/footer.php"); ?>

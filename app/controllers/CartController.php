@@ -115,7 +115,7 @@ function showCart(): void
         }
     }
 
-    view('user/account/cart', [
+    partial('user/account/cart', [
         'cart' => $cart,
         'cart_count' => $stats['cart_count'],
         'coupon' => $coupon,
@@ -140,7 +140,7 @@ function applyCouponToCart(string $code): void
         redirect('account');
     }
 
-    redirect('cart&coupon=FALSE');
+    redirect('account');
 }
 
 

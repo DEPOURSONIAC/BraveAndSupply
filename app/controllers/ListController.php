@@ -15,7 +15,7 @@ function showLists(): void
 
     $lists = getLists($user_id);
 
-    view('user/account/lists', [
+    partial('user/account/lists', [
         'lists' => $lists
     ]);
 }

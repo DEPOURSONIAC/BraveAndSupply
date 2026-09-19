@@ -234,3 +234,31 @@ function countOrdersByUser(int $user_id): int
 
     return $order_count;
 }
+
+
+/**
+ * Mark an order as received.
+ *
+ * @param int $order_id Order ID.
+ *
+ * @return bool True if the order was updated successfully.
+ */
+function markOrderReceived(int $order_id): bool
+{
+    $db = getPDO();
+    $updated = false;
+
+    try {
+        if ($order_id > 0) {
+            $sql = "UPDATE orders SET status = ? WHERE id = ?";
+
+            $stmt = $db->prepare($sql);
+
+            $updated = $stmt->execute(['delivered', $order_id]);
+        }
+    } catch (PDOException $e) {
+        error_log(__FUNCTION__ . '(): ' . $e->getMessage());
+    }
+
+    return $updated;
+}

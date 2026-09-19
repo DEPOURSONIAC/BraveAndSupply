@@ -1,5 +1,3 @@
-<?php include( INCLUDE_PATH . "/header.php"); ?>
-
 <div class="admin-panel admin-users">
     <div class="admin-panel-head">
         <h2>Utilisateurs (<?= count($users) ?>)</h2>
@@ -44,11 +42,9 @@
                             <?php endif; ?>
                             <td>
                                 <div class="admin-table-actions">
-                                    <!-- Pas de route adminEditUser dans le routeur : édition non disponible pour l'instant -->
                                     <form action="<?= BASE_URL ?>?action=adminDeleteUser" method="post">
                                         <input type="hidden" name="id" value="<?= (int) $user['id'] ?>">
-                                        <button type="submit" class="admin-btn-icon danger"
-                                                data-confirm="Supprimer définitivement cet utilisateur ?">
+                                        <button type="submit" class="admin-btn-icon danger" data-confirm="Supprimer définitivement cet utilisateur ?">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>
@@ -62,5 +58,3 @@
 
     <?php endif; ?>
 </div>
-
-<?php include( INCLUDE_PATH . "/footer.php"); ?>

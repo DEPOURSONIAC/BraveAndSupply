@@ -1,23 +1,11 @@
-<?php include(INCLUDE_PATH . "/header.php"); ?>
-
-<?php
-$order_info = $order['order'] ?? [];
-$items = $order['items'] ?? [];
-$status = $order_info['status'] ?? 'pending';
-?>
-
 <div class="admin-order-detail">
 
-    <a
-        href="<?= BASE_URL ?>?action=adminOrders"
-        class="order-back-link"
-    >
+    <a href="<?= BASE_URL ?>?action=adminOrders" class="order-back-link">
         &larr; Retour aux commandes
     </a>
 
     <div class="row">
 
-        <!-- Produits commandés -->
         <div class="col-lg-7">
 
             <div class="admin-panel">
@@ -55,11 +43,7 @@ $status = $order_info['status'] ?? 'pending';
                                         <td>
                                             <?php if (!empty($item['image'])): ?>
 
-                                                <img
-                                                    src="<?= BASE_URL ?>assets/images/products/<?= htmlspecialchars($item['image'], ENT_QUOTES, 'UTF-8') ?>"
-                                                    alt="<?= htmlspecialchars($item['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
-                                                    class="admin-table-thumb"
-                                                >
+                                                <img src="<?= BASE_URL ?>assets/images/products/<?= htmlspecialchars($item['image'], ENT_QUOTES, 'UTF-8') ?>" alt="<?= htmlspecialchars($item['name'] ?? '', ENT_QUOTES, 'UTF-8') ?>" class="admin-table-thumb">
 
                                             <?php else: ?>
 
@@ -77,13 +61,7 @@ $status = $order_info['status'] ?? 'pending';
                                         </td>
 
                                         <td>
-                                            <?= number_format(
-                                                (float) ($item['price'] ?? 0),
-                                                2,
-                                                ',',
-                                                ' '
-                                            ) ?>
-                                            €
+                                            <?= number_format((float) ($item['price'] ?? 0),2,',',' ') ?>€
                                         </td>
 
                                     </tr>
@@ -102,13 +80,7 @@ $status = $order_info['status'] ?? 'pending';
                         <span>Total</span>
 
                         <span>
-                            <?= number_format(
-                                (float) ($order_info['total_price'] ?? 0),
-                                2,
-                                ',',
-                                ' '
-                            ) ?>
-                            €
+                            <?= number_format((float) ($order_info['total_price'] ?? 0), 2, ',', ' ') ?>€
                         </span>
                     </div>
                 </div>
@@ -118,7 +90,6 @@ $status = $order_info['status'] ?? 'pending';
         </div>
 
 
-        <!-- Informations commande -->
         <div class="col-lg-5">
 
             <div class="admin-panel">
@@ -141,14 +112,7 @@ $status = $order_info['status'] ?? 'pending';
                         <span>Date</span>
 
                         <strong>
-                            <?= htmlspecialchars(
-                                date(
-                                    'd/m/Y H:i',
-                                    strtotime($order_info['created_at'] ?? 'now')
-                                ),
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
+                            <?= htmlspecialchars(date('d/m/Y H:i', strtotime($order_info['created_at'] ?? 'now')), ENT_QUOTES, 'UTF-8') ?>
                         </strong>
                     </li>
 
@@ -166,21 +130,10 @@ $status = $order_info['status'] ?? 'pending';
 
                 <?php if ($status === 'paid'): ?>
 
-                    <form
-                        action="<?= BASE_URL ?>?action=adminMarkOrderReceived"
-                        method="post"
-                        class="admin-order-action"
-                    >
-                        <input
-                            type="hidden"
-                            name="id"
-                            value="<?= (int) ($order_info['id'] ?? 0) ?>"
-                        >
+                    <form action="<?= BASE_URL ?>?action=adminMarkOrderReceived" method="post" class="admin-order-action">
+                        <input type="hidden" name="id" value="<?= (int) ($order_info['id'] ?? 0) ?>">
 
-                        <button
-                            type="submit"
-                            class="admin-btn-primary"
-                        >
+                        <button type="submit" class="admin-btn-primary">
                             Marquer comme reçue
                         </button>
                     </form>
@@ -202,7 +155,6 @@ $status = $order_info['status'] ?? 'pending';
             </div>
 
 
-            <!-- Client -->
             <div class="admin-panel">
 
                 <div class="admin-panel-head">
@@ -215,11 +167,7 @@ $status = $order_info['status'] ?? 'pending';
                         <span>Nom</span>
 
                         <strong>
-                            <?= htmlspecialchars(
-                                $order_info['user_name'] ?? '—',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
+                            <?= htmlspecialchars($order_info['user_name'] ?? '—', ENT_QUOTES, 'UTF-8') ?>
                         </strong>
                     </li>
 
@@ -227,11 +175,7 @@ $status = $order_info['status'] ?? 'pending';
                         <span>Email</span>
 
                         <strong>
-                            <?= htmlspecialchars(
-                                $order_info['user_email'] ?? '—',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
+                            <?= htmlspecialchars($order_info['user_email'] ?? '—', ENT_QUOTES, 'UTF-8') ?>
                         </strong>
                     </li>
 
@@ -239,11 +183,7 @@ $status = $order_info['status'] ?? 'pending';
                         <span>Adresse</span>
 
                         <strong>
-                            <?= htmlspecialchars(
-                                $order_info['user_address'] ?? '—',
-                                ENT_QUOTES,
-                                'UTF-8'
-                            ) ?>
+                            <?= htmlspecialchars($order_info['user_address'] ?? '—', ENT_QUOTES, 'UTF-8') ?>
                         </strong>
                     </li>
 
@@ -256,5 +196,3 @@ $status = $order_info['status'] ?? 'pending';
     </div>
 
 </div>
-
-<?php include(INCLUDE_PATH . "/footer.php"); ?>

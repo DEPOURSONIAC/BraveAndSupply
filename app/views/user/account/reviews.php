@@ -1,4 +1,4 @@
-            <!-- AJOUTER UN AVIS -->
+            <!-- Append a review -->
             <div class="account-review-form">
 
                 <div class="account-section-header">
@@ -10,8 +10,7 @@
                     <div class="form-group">
                         <label for="comment">Votre avis</label>
 
-                        <textarea id="comment" name="comment" rows="5" class="form-control" placeholder="Partagez votre expérience..." required>
-                        </textarea>
+                        <textarea id="comment" name="comment" rows="5" class="form-control" placeholder="Partagez votre expérience..." required></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-primary">
@@ -22,7 +21,7 @@
 
             </div>
 
-            <!-- AVIS -->
+            <!-- Reviews -->
             <div class="account-section">
 
                 <div class="account-section-header">
