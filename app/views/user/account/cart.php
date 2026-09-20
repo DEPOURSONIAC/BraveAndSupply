@@ -165,7 +165,7 @@
                             <span>Total</span>
 
                             <strong id="cart_total" style="color: black;">
-                                <?= htmlspecialchars($cart['total'], ENT_QUOTES, 'UTF-8') ?> €
+                                <?= htmlspecialchars(number_format((float) $cart['total'], 2, ',', ' '), ENT_QUOTES, 'UTF-8') ?> €
                             </strong>
 
                         </div>

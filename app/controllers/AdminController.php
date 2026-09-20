@@ -92,7 +92,7 @@ function showAdminOrder(int $id): void
 }
 
 
-/**
+/**d
  * Add a new product.
  *
  * @param string $name Product name.
@@ -102,7 +102,7 @@ function showAdminOrder(int $id): void
  *
  * @return void
  */
-function adminAddProduct(string $name, string $description, float $price, int $quantity): void 
+function adminAddProduct(string $name, string $description, float $price, int $quantity = 1): void 
 {
     // Validation
     $name = trim($name);
@@ -124,9 +124,14 @@ function adminAddProduct(string $name, string $description, float $price, int $q
     }
 
     // Category and img doesn't work
-    createProduct(5, $name, $description, $price, $quantity, '');
+    $created = createProduct(5, $name, $description, $price, $quantity, 'unkown.jpg');
 
-    redirect('admin');
+    if (!$created) {
+    http_response_code(500);
+    exit('Impossible de créer le produit.');
+    }
+
+    redirect('adminProducts');
 }
 
 
@@ -141,7 +146,7 @@ function adminAddProduct(string $name, string $description, float $price, int $q
  *
  * @return void
  */
-function adminEditProduct(int $id, string $name, string $description, float $price, int $quantity): void 
+function adminEditProduct(int $id, string $name, string $description, float $price, int $quantity = 1): void 
 {
     $name = trim($name);
     $description = trim($description);
@@ -174,9 +179,14 @@ function adminEditProduct(int $id, string $name, string $description, float $pri
     }
 
     // Category and img doesn't work
-    updateProduct($id, 5, $name, $description, $price, $quantity, '');
+    $updated = updateProduct($id, 5, $name, $description, $price, $quantity, 'unkown.jpg');
 
-    redirect('admin');
+    if (!$updated) {
+    http_response_code(500);
+    exit('Impossible de modifier le produit.');
+    }
+
+    redirect('adminProducts');
 }
 
 
@@ -203,7 +213,7 @@ function adminDeleteProduct(int $id): void
 
     deleteProduct($id);
 
-    redirect('admin');
+    redirect('adminProducts');
 }
 
 
@@ -230,7 +240,7 @@ function adminDeleteUser(int $id): void
 
     deleteUser($id);
 
-    redirect('admin');
+    redirect('adminUsers');
 }
 
 

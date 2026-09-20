@@ -21,7 +21,6 @@ function showRegister(): void
     view('auth/register');
 }
 
-
 /**
  * Authenticate a user.
  *
@@ -32,21 +31,29 @@ function showRegister(): void
  */
 function login(string $email, string $password): void
 {
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'IP inconnue';
+    $date = date('Y-m-d H:i:s');
+
     if ($email === '' || $password === '') {
+        logError('Tentative de connexion avec des champs manquants', $ip);
         exit('Champs manquants.');
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        logError("Tentative de connexion avec une adresse email invalide : {$email}", $ip);
         exit('Adresse email invalide.');
     }
 
     $user = getUserByEmail($email);
 
     if (!$user || !password_verify($password, $user['password'])) {
+        logError("Échec de connexion pour l'adresse email : {$email}", $ip);
         exit('Identifiants incorrects.');
     }
 
     loginUser($user);
+
+    logSuccess("Connexion réussie pour l'adresse email : {$email}", $ip);
 
     redirect('home');
 }
