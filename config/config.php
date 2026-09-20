@@ -56,7 +56,7 @@ define('CATEGORY_KIDS', 3);
 
     // YOUR_PAYPAL_CLIENT_ID
     // YOUR_PAYPAL_CLIENT_SECRET
-define('PAYPAL_CLIENT_ID', 'YOUR_PAYPAL_CLIENT_ID-72przfK_n');
+define('PAYPAL_CLIENT_ID', 'YOUR_PAYPAL_CLIENT_ID');
 define('PAYPAL_CLIENT_SECRET', 'YOUR_PAYPAL_CLIENT_SECRET');
 
 define('PAYPAL_API_URL', 'https://api-m.sandbox.paypal.com');
