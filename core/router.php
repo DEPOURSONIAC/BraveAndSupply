@@ -1,22 +1,21 @@
 <?php
 
+/**
+ * Define all application routes.
+ *
+ * Each route specifies:
+ * - the HTTP method;
+ * - the controller function to execute;
+ * - the parameters required by the controller;
+ * - whether administrator privileges are required.
+ *
+ * @return array
+ */
 function allRoutes(): array
 {
-    /*
-        Déclare toutes les routes/ action de l'application.
-
-        Chaque méthode HTTP définit :
-        - la fonction du 'controllers' à exécuter ;
-        - les paramètres nécessaires pour la page.
-
-        Les paramètres sont récupérés par le Router
-        depuis $_GET ou $_POST selon la méthode HTTP à travers le CRUD.
-    */
-
     return [
 
-        // Pages générales
-
+        // General pages
 
         'home' => [
             'GET' => [
@@ -39,7 +38,7 @@ function allRoutes(): array
             ]
         ],
 
-        // Pages légales
+        // Legal pages
 
         'infos' => [
             'GET' => [
@@ -69,7 +68,7 @@ function allRoutes(): array
             ]
         ],
 
-        // Compte utilisateur
+        // User account
 
         'account' => [
             'GET' => [
@@ -95,7 +94,9 @@ function allRoutes(): array
         'order' => [
             'GET' => [
                 'function' => 'showOrder',
-                'params' => ['id']
+                'params' => [
+                    'id'
+                ]
             ]
         ],
 
@@ -106,7 +107,7 @@ function allRoutes(): array
             ]
         ],
 
-        // Favorite
+        // Favorites
 
         'favorite' => [
             'GET' => [
@@ -119,7 +120,7 @@ function allRoutes(): array
             'POST' => [
                 'function' => 'addToFavorite',
                 'params' => [
-                    'product_id',
+                    'product_id'
                 ]
             ]
         ],
@@ -139,7 +140,7 @@ function allRoutes(): array
             'POST' => [
                 'function' => 'createReview',
                 'params' => [
-                    'comment',
+                    'comment'
                 ]
             ]
         ],
@@ -148,30 +149,38 @@ function allRoutes(): array
             'POST' => [
                 'function' => 'removeReview',
                 'params' => [
-                    'review_id',
+                    'review_id'
                 ]
             ]
         ],
 
-        // accountEdit
+        // Account editing
 
         'accountEdit' => [
             'GET' => [
                 'function' => 'showAccountEdit',
                 'params' => []
             ],
+
             'POST' => [
                 'function' => 'updateProfile',
-                'params' => ['name', 'email', 'address', 'new_password']
+                'params' => [
+                    'name',
+                    'email',
+                    'address',
+                    'new_password'
+                ]
             ]
         ],
 
-        // COUPONS
+        // Coupons
 
         'applyCoupon' => [
             'POST' => [
                 'function' => 'applyCouponToCart',
-                'params' => ['code']
+                'params' => [
+                    'code'
+                ]
             ]
         ],
 
@@ -238,7 +247,7 @@ function allRoutes(): array
             ]
         ],
 
-        // Panier
+        // Cart
 
         'cart' => [
             'GET' => [
@@ -276,10 +285,9 @@ function allRoutes(): array
             ]
         ],
 
-        // Authentification
+        // Authentication
 
         'login' => [
-
             'GET' => [
                 'function' => 'showLogin',
                 'params' => []
@@ -295,7 +303,6 @@ function allRoutes(): array
         ],
 
         'register' => [
-
             'GET' => [
                 'function' => 'showRegister',
                 'params' => []
@@ -320,7 +327,7 @@ function allRoutes(): array
             ]
         ],
 
-        // Produits
+        // Products
 
         'product' => [
             'GET' => [
@@ -340,7 +347,7 @@ function allRoutes(): array
             ]
         ],
 
-        // Catégories
+        // Categories
 
         'category' => [
             'GET' => [
@@ -351,8 +358,7 @@ function allRoutes(): array
             ]
         ],
 
-         
-        // PAYPAL / CHECKOUT
+        // PayPal / Checkout
 
         'checkout' => [
             'GET' => [
@@ -369,17 +375,13 @@ function allRoutes(): array
         ],
 
         'paypalCaptureOrder' => [
-            'POST' => [
+            'GET' => [
                 'function' => 'paypalCaptureOrder',
-                'params' => [
-                    'order_id'
-                ]
+                'params' => []
             ]
         ],
 
-        // ***************
-        //      ADMIN
-        // ***************
+        // Administrator area
 
         'admin' => [
             'GET' => [
@@ -423,10 +425,8 @@ function allRoutes(): array
             'admin' => true
         ],
 
-            // ***************
-            //      ADMIN EDIT
-            // ***************
-            
+        // Administrator product management
+
         'adminAddProduct' => [
             'POST' => [
                 'function' => 'adminAddProduct',
@@ -483,116 +483,101 @@ function allRoutes(): array
             ],
             'admin' => true
         ],
-
     ];
 }
 
 
+/**
+ * Retrieve the requested route.
+ *
+ * The route is determined from the "action" GET parameter.
+ * If no action is provided, the home route is used.
+ *
+ * @return array The requested route configuration.
+ */
 function getRoute(): array
 {
-    /*
-        Récupère la route demandée.
-
-        Genre :
-            ?action=product&id=15
-
-        Retourne la route 'product'.
-
-        S'il y a rien:
-            -Remplacer par 'home'
-    */
-
     $routes = allRoutes();
 
     $action = $_GET['action'] ?? 'home';
 
     if (!isset($routes[$action])) {
         http_response_code(404);
-        exit('Page introuvable');
+        exit('Page not found');
     }
 
     $route = $routes[$action];
-
     $route['name'] = $action;
 
     return $route;
 }
 
 
+/**
+ * Check whether the current user is authorized to access a route.
+ *
+ * This function handles:
+ * - authentication requirements;
+ * - access to login and registration pages;
+ * - administrator-only routes.
+ *
+ * @param array $route The requested route configuration.
+ *
+ * @return array The authorized route configuration.
+ */
 function protectRoute(array $route): array
 {
-    /*
-        Vérifie si l'utilisateur peut accéder à la route.
-
-        - Les visiteurs non connectés sont redirigés vers login.
-        - Un utilisateur connecté ne peut pas accéder à login/register.
-        - Les routes avec 'admin' => true sont réservées aux administrateurs.
-    */
-
     $is_logged = isset($_SESSION['id']);
-    $is_admin = isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+    $is_admin = isset($_SESSION['role'])
+        && $_SESSION['role'] === 'admin';
 
     $routes = allRoutes();
 
-    // Utilisateur non connecté
-    if (!$is_logged && !in_array($route['name'], ['login', 'register'], true)) {
+    // Redirect unauthenticated users to the login page.
+    if (
+        !$is_logged
+        && !in_array($route['name'], ['login', 'register'], true)
+    ) {
         $route = $routes['login'];
         $route['name'] = 'login';
     }
 
-    // Utilisateur déjà connecté
-    if ($is_logged && in_array($route['name'], ['login', 'register'], true)) {
+    // Prevent authenticated users from accessing login and registration.
+    if (
+        $is_logged
+        && in_array($route['name'], ['login', 'register'], true)
+    ) {
         $route = $routes['home'];
         $route['name'] = 'home';
     }
 
-    // Route réservée aux administrateurs
+    // Restrict administrator routes to administrators.
     if (($route['admin'] ?? false) === true && !$is_admin) {
         $route = $routes['home'];
+        $route['name'] = 'home';
     }
 
     return $route;
 }
 
 
+/**
+ * Retrieve the arguments required by the current route.
+ *
+ * Parameters are read from GET or POST according to the HTTP method.
+ * The arguments are returned in the same order as defined by the route.
+ *
+ * @param array $route The current route configuration.
+ *
+ * @return array The arguments to pass to the controller function.
+ */
 function getRouteArguments(array $route): array
 {
-    /*
-        Récupère les paramètres nécessaires à la route
-        depuis GET ou POST selon la méthode HTTP.
-
-        Genre :
-
-        Route :
-            'cartUpdate' => [
-                'POST' => [
-                    'function' => 'cartUpdate',
-                    'params' => [
-                        'product_id',
-                        'quantity'
-                    ]
-                ]
-            ]
-
-        CRUD :
-            POST
-
-        Data :
-            $_POST['product_id']
-            $_POST['quantity']
-
-        Résultat(en forme de tableau) :
-            [
-                $product_id,
-                $quantity
-            ]
-    */
-
     $method = $_SERVER['REQUEST_METHOD'];
 
     if (!isset($route[$method])) {
         http_response_code(405);
-        exit('Méthode non autorisée');
+        exit('Method not allowed');
     }
 
     $params = $route[$method]['params'];
@@ -606,9 +591,8 @@ function getRouteArguments(array $route): array
     $args = [];
 
     foreach ($params as $param) {
-
         if (!isset($source[$param])) {
-            exit("Le paramètre $param est manquant.");
+            exit("Missing parameter: $param");
         }
 
         $args[] = $source[$param];
@@ -618,18 +602,21 @@ function getRouteArguments(array $route): array
 }
 
 
+/**
+ * Execute the controller function associated with the current route.
+ *
+ * @param array $route The current route configuration.
+ * @param array $args Arguments passed to the controller function.
+ *
+ * @return void
+ */
 function executeRoute(array $route, array $args): void
 {
-    /*
-        Exécute la fonction Controller associée
-        à la méthode HTTP utilisée.
-    */
-
     $method = $_SERVER['REQUEST_METHOD'];
 
     if (!isset($route[$method])) {
         http_response_code(405);
-        exit('Méthode non autorisée');
+        exit('Method not allowed');
     }
 
     $function = $route[$method]['function'];

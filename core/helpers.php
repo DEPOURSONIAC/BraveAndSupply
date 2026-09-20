@@ -80,3 +80,36 @@ function loginUser(array $user): bool
 
     return true;
 }
+
+
+/**
+
+* Write a successful operation to the success log.
+*
+* @param string $message Message describing the successful operation.
+* @param string $ip      IP address associated with the operation.
+*
+* @return void
+  */
+  function logSuccess(string $message, string $ip): void
+  {
+    $log = sprintf("[%s] [SUCCESS] %s - IP: %s%s",date('Y-m-d H:i:s'), $message,$ip,PHP_EOL);
+
+    file_put_contents(__DIR__ . '/../storage/logs/success.log',$log,FILE_APPEND | LOCK_EX);
+  }
+
+/**
+
+* Write an error to the error log.
+*
+* @param string $message Message describing the error.
+* @param string $ip      IP address associated with the error.
+*
+* @return void
+ */
+function logError(string $message, string $ip): void
+{
+    $log = sprintf("[%s] [ERROR] %s - IP: %s%s", date('Y-m-d H:i:s'), $message, $ip, PHP_EOL);
+
+    file_put_contents(__DIR__ . '/../storage/logs/error.log', $log, FILE_APPEND | LOCK_EX);
+  }

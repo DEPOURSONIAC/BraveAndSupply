@@ -25,7 +25,12 @@ require_once MODEL_PATH . '/ProductModel.php';
 require_once MODEL_PATH . '/ReviewModel.php';
 require_once MODEL_PATH . '/UserModel.php';
 require_once MODEL_PATH . '/AdminModel.php';
-require_once MODEL_PATH . '/CheckoutModel.php';
+
+// ---------------
+// SERVICES
+// ---------------
+
+require_once SERVICE_PATH . '/PayPalService.php';
 
 // ---------------
 // CONTROLLERS
