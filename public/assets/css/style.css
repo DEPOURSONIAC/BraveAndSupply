@@ -815,6 +815,46 @@ button:hover {
     width: 100%;
     margin-top: 30px;
 }
+/* Paypal */ 
+
+.paypal-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 48px;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #ffc439;
+
+    cursor: pointer;
+
+    transition: background-color 0.2s ease;
+}
+
+.paypal-button:hover {
+    background-color: #f2ba36;
+}
+
+.paypal-button:focus-visible {
+    outline: 2px solid #003087;
+    outline-offset: 2px;
+}
+
+.paypal-button__logo {
+    color: #003087;
+
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: -1px;
+}
 
 /* ----- Responsive ----- */
 
