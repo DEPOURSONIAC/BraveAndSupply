@@ -198,10 +198,21 @@ CREATE TABLE reviews (
         ON DELETE CASCADE
 );
 
+-- ==========================
+-- CTF FLAG 02
+-- ==========================
+
+CREATE TABLE ctf_sessions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    session_id TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
 -- ----------
 -- Ajout des datas par défaut
 -- ----------
+
 
 -- ===========================================
 -- CATEGORIES
@@ -248,25 +259,25 @@ INSERT INTO products (id, category_id, name, description, price, stock, image, c
 -- ===========================================
 
 INSERT INTO users (id, name, email, password, role, created_at, address, updated_at) VALUES
-(1, 'Toto Grimal', 'toto.grimal@iut.fr', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'admin', '2026-05-21 18:52:33', '1600 Pennsylvania Avenue NW, Washington, D.C., États-Unis', '2026-06-22 20:21:35'),
+(1, 'Toto Grimal', 'toto.grimal@iut.fr', '$2y$12$ZMhzN8fmrMhQ69RY8pX79.JZplYSj/233byzpFwXouoSP6NM.W21S', 'admin', '2026-05-21 18:52:33', '1600 Pennsylvania Avenue NW, Washington, D.C., États-Unis', '2026-06-22 20:21:35'),
 
-(2, 'Michel Polnareff', 'michel.polnareff@la-defense.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'admin', '2026-05-21 18:52:33', 'Puteaux La Défense 92800 Paris', '2026-06-22 20:41:17'),
+(2, 'Michel Polnareff', 'michel.polnareff@la-defense.com', '$2y$12$X3iA/YpJZyq82OQR5SJlUeGPUp38B.0dY1iy97GK9DzfzhNd27RN6', 'admin', '2026-05-21 18:52:33', 'Puteaux La Défense 92800 Paris', '2026-06-22 20:41:17'),
 
-(3, 'Alice Liddell', 'alice.liddell@test.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'admin', '2026-05-21 18:52:33', 'Piazza del Colosseo, 1, Rome, Italie', '2026-06-22 20:40:22'),
+(3, 'Alice Liddell', 'alice.liddell@test.com', '$2y$12$KoR4eCoSIDuu0PsdwmpQaenjlGoqbUeSfSWeAmoRyol1kr7hLTKf6', 'admin', '2026-05-21 18:52:33', 'Piazza del Colosseo, 1, Rome, Italie', '2026-06-22 20:40:22'),
 
-(4, 'Bob Marley', 'bob.marley@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'admin', '2026-05-21 18:52:33', '221B Baker Street, Londres, Royaume-Uni', '2026-06-22 20:40:51'),
+(4, 'Bob Marley', 'bob.marley@gmail.com', '$2y$12$J/ydKJgldkbjzTR6pmflfugAYkZAlCLBQ1fJeuaQwmSwQgjGJlre2', 'admin', '2026-05-21 18:52:33', '221B Baker Street, Londres, Royaume-Uni', '2026-06-22 20:40:51'),
 
-(5, 'Michael Olise', 'michael.olise@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'user', '2026-05-21 18:52:33', '44 Rue Nationale, Lille', '2026-06-22 19:33:19'),
+(5, 'michael.olise@gmail.com', 'michael.olise@gmail.com', '$2y$12$qPIqkyDYR0O1tegQ556xP.Mmo1SrsrriZSNOrcJy5yLyu.Ts/4wJC', 'user', '2026-05-21 18:52:33', 'FLAG{YOU_ARE_WHAT_YOUR_COOKIE_SAYS}', '2026-06-22 19:33:19'),
 
-(6, 'Emmanuel Macron', 'emmanuel.macron@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'user', '2026-05-21 18:52:33', '9 Rue des Lilas, Bordeaux', '2026-06-22 19:33:27'),
+(6, 'Emmanuel Macron', 'emmanuel.macron@gmail.com', '$2y$12$2FR6YOo9FlGCwx4S6EtJ4edK82B5slfgDIOvMV41i0U.TlYXg3Quq', 'user', '2026-05-21 18:52:33', '9 Rue des Lilas, Bordeaux', '2026-06-22 19:33:27'),
 
-(7, 'Brad Pitt', 'brad.pittd@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'user', '2026-05-21 18:52:33', '21 Avenue Jean Jaurès, Toulouse', '2026-06-22 19:33:35'),
+(7, 'Brad Pitt', 'brad.pittd@gmail.com', '$2y$12$flJ//SYNqJUWZZR4NIvmvO3JuUF9Lrb3stGWMeU5iwjT0X74fOfQ.', 'user', '2026-05-21 18:52:33', '21 Avenue Jean Jaurès, Toulouse', '2026-06-22 19:33:35'),
 
-(8, 'Marine Le Pen', 'marine.lepen@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'user', '2026-05-21 18:52:33', '7 Rue de Strasbourg, Nantes', '2026-06-22 19:33:43'),
+(8, 'Marine Le Pen', 'marine.lepen@gmail.com', '$2y$12$2ICjMhf8ibd5hFEnkj4Np.K8jKKit7Bvnl7OOIdMBICYEWm1ur8mW', 'user', '2026-05-21 18:52:33', '7 Rue de Strasbourg, Nantes', '2026-06-22 19:33:43'),
 
-(9, 'Emma Watson', 'emma.watson@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'user', '2026-05-21 18:52:33', '30 Rue Saint-Michel, Rennes', '2026-06-22 19:33:51'),
+(9, 'Emma Watson', 'emma.watson@gmail.com', '$2y$12$2R28Fp4A.52JYveWfiK0iO1dbx9NbUg98rKKUJ0HvEd0EJK5gUEUq', 'user', '2026-05-21 18:52:33', '30 Rue Saint-Michel, Rennes', '2026-06-22 19:33:51'),
 
-(10, 'Elon Musk', 'elon.musk@gmail.com', '$2y$10$TUIdC/3cUB1.dCGNE9c40.V4NAxoae/E8m5Qt3V57XsB2jAdg4lm.', 'user', '2026-05-21 18:52:33', '15 Rue du Commerce, Nice', '2026-06-22 19:34:03');
+(10, 'Elon Musk', 'elon.musk@gmail.com', '$2y$12$V8rJuIwzksfJ5AC12G4/WuLBYbLFiedC.bOcWFfjHVNWrPKFgYKTm', 'user', '2026-05-21 18:52:33', '15 Rue du Commerce, Nice', '2026-06-22 19:34:03');
 
 -- ===========================================
 -- COUPONS
@@ -313,11 +324,11 @@ INSERT INTO favorites (id, user_id, product_id) VALUES
 -- ===========================================
 -- PRODUCT LISTS
 -- ===========================================
-
 INSERT INTO product_lists (id, user_id, name) VALUES
 (1, 5, 'Ma wishlist'),
 (2, 6, 'Tenues été'),
-(3, 7, 'Costumes préférés');
+(3, 7, 'Costumes préférés'),
+(4, 9, 'FLAG{WHO_MADE_THE_REQUEST}');
 
 -- ===========================================
 -- PRODUCT LIST ITEMS
@@ -369,3 +380,7 @@ INSERT INTO reviews (id, user_id, comment, created_at) VALUES
 (4, 8, 'Le costume est magnifique.', '2026-07-03 14:20:00'),
 (5, 9, 'Excellent rapport qualité/prix.', '2026-07-04 17:10:00'),
 (6, 10, 'Je recommanderai sans hésiter.', '2026-07-05 20:05:00');
+
+
+
+

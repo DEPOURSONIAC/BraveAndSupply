@@ -92,11 +92,11 @@ function loginUser(array $user): bool
 * @return void
   */
   function logSuccess(string $message, string $ip): void
-  {
+{
     $log = sprintf("[%s] [SUCCESS] %s - IP: %s%s",date('Y-m-d H:i:s'), $message,$ip,PHP_EOL);
 
     file_put_contents(__DIR__ . '/../storage/logs/success.log',$log,FILE_APPEND | LOCK_EX);
-  }
+}
 
 /**
 

@@ -56,7 +56,7 @@ define('CATEGORY_KIDS', 3);
 
     // YOUR_PAYPAL_CLIENT_ID
     // YOUR_PAYPAL_CLIENT_SECRET
-define('PAYPAL_CLIENT_ID', 'YOUR_PAYPAL_CLIENT_ID');
-define('PAYPAL_CLIENT_SECRET', 'YOUR_PAYPAL_CLIENT_SECRET');
+define('PAYPAL_CLIENT_ID', 'ASEerllv1WTjib8bJ_IH1jdqcY0BbpJc1YVyYrQxeTFzmiu8HLF15u9YrTuIRwkk1eGr2B-72przfK_n');
+define('PAYPAL_CLIENT_SECRET', 'EILgYetarVIeV4bNE4vxtqRG5QBVtiLzTu30aeALooz6ZgEkkn85zKX59Wb7NmPPpSaoCqnt2oGRdXix');
 
 define('PAYPAL_API_URL', 'https://api-m.sandbox.paypal.com');

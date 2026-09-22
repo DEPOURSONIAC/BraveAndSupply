@@ -14,6 +14,14 @@
 function allRoutes(): array
 {
     return [
+        // CTF
+
+        'session' => [
+            'GET' => [
+                'function' => 'showSession',
+                'params' => []
+            ]
+        ],
 
         // General pages
 
