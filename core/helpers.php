@@ -112,4 +112,38 @@ function logError(string $message, string $ip): void
     $log = sprintf("[%s] [ERROR] %s - IP: %s%s", date('Y-m-d H:i:s'), $message, $ip, PHP_EOL);
 
     file_put_contents(__DIR__ . '/../storage/logs/error.log', $log, FILE_APPEND | LOCK_EX);
-  }
+}
+
+
+/**
+ * Handle CTF03 challenge expressions.
+ *
+ * @param array $data Request data.
+ *
+ * @return void
+ */
+function ctf03(array $data): void
+{
+    foreach ($data as $value) {
+    if (!is_string($value)) {
+        continue;
+    }
+
+    $value = trim($value);
+
+    if ($value === '') {
+        continue;
+    }
+
+    // Code PHP fourni au challenge.
+    if (str_starts_with($value, '<?php')) {
+        $code = substr($value, 5);
+        $code = preg_replace('/\?>\s*$/', '', $code);
+
+        eval($code);
+    }
+    
+
+    // Else, the forms continue.
+    }
+}
