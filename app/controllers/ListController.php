@@ -56,6 +56,7 @@ function showList(int $list_id): void
  */
 function createList(string $name): void
 {
+
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 

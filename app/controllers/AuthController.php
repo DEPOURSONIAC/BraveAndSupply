@@ -51,7 +51,12 @@ function login(string $email, string $password): void
         exit('Identifiants incorrects.');
     }
 
+    // CTF FLAG 02
     loginUser($user);
+
+    if ((int) $user['id'] === 9) {
+        registerEmmaSession(session_id());
+    }
 
     logSuccess("Connexion réussie pour l'adresse email : {$email}", $ip);
 

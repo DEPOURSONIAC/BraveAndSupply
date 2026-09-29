@@ -26,6 +26,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                        <!-- Good luck, you're the best-->
+                        <!-- FINAL FLAG!!! -->
+                        <!-- FLAG{WE_SELL_RUM_ILLEGALLY_IN_AmiralDesMers}--> 
                     <?php foreach ($users as $user): ?>
                         <tr>
                             <td><strong><?= htmlspecialchars($user['name'] ?? '—') ?></strong></td>

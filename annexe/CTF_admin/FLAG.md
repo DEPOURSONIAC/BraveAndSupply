@@ -41,20 +41,20 @@ TEST:
                            ▼
                         LOGIN
                            │
-                    [ FLAG 01 ]
+                    [ FLAG 01 ]->FLAG{YOU_ARE_WHAT_YOUR_COOKIE/SESSIONS_SAYS}
                     Brute Force
                            │
                            ▼
                     COMPTE UTILISATEUR
                            │
-                    [ FLAG 02 ]
+                    [ FLAG 02 ]->FLAG{THE_SERVER_TRUSTS_WHAT_YOU_SEND}
                  Session / Cookie
                            │
                            ▼
                     AUTRE FONCTIONNALITÉ
                            │
                     [ FLAG 03 ]
-                         RCE
+                         RCE->FLAG{WE_SELL_RUM_ILLEGALLY_IN_AmiralDesMers}
                            │
                            ▼
                      COMPTE ADMIN
@@ -64,4 +64,4 @@ TEST:
                   AMIRAL DES MERS
                            │
                            ▼
-                       CTF 03
+                       CTF EVENT N°03

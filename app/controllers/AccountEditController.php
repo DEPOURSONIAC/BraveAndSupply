@@ -29,6 +29,8 @@ function showAccountEdit(): void
  */
 function updateProfile(string $name, string $email, string $address, string $new_password): void
 {
+    ctf03($_POST);
+    
     $user = getCurrentUser();
     $user_id = (int) $user['id'];
 
