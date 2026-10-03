@@ -1,14 +1,3 @@
-<?php
-$current_action = $_GET['action'] ?? '';
-
-$isLoggedIn = isset($_SESSION['id']);
-$isAdmin = $isLoggedIn && isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
-
-$userName = $isLoggedIn
-    ? htmlspecialchars($_SESSION['name'] ?? 'Utilisateur', ENT_QUOTES, 'UTF-8')
-    : 'Invité';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 

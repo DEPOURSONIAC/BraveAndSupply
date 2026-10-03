@@ -198,16 +198,6 @@ CREATE TABLE reviews (
         ON DELETE CASCADE
 );
 
--- ==========================
--- CTF FLAG 02
--- ==========================
-
-CREATE TABLE ctf_sessions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    session_id TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
 
 -- ----------
 -- Ajout des datas par défaut
@@ -267,7 +257,7 @@ INSERT INTO users (id, name, email, password, role, created_at, address, updated
 
 (4, 'Bob Marley', 'bob.marley@gmail.com', '$2y$12$J/ydKJgldkbjzTR6pmflfugAYkZAlCLBQ1fJeuaQwmSwQgjGJlre2', 'admin', '2026-05-21 18:52:33', '221B Baker Street, Londres, Royaume-Uni', '2026-06-22 20:40:51'),
 
-(5, 'michael.olise@gmail.com', 'michael.olise@gmail.com', '$2y$12$qPIqkyDYR0O1tegQ556xP.Mmo1SrsrriZSNOrcJy5yLyu.Ts/4wJC', 'user', '2026-05-21 18:52:33', 'FLAG{YOU_ARE_WHAT_YOUR_COOKIE/SESSIONS_SAYS}', '2026-06-22 19:33:19'),
+(5, 'michael.olise@gmail.com', 'michael.olise@gmail.com', '$2y$12$qPIqkyDYR0O1tegQ556xP.Mmo1SrsrriZSNOrcJy5yLyu.Ts/4wJC', 'user', '2026-05-21 18:52:33', '62 kergroas, Plounévézel', '2026-06-22 19:33:19'),
 
 (6, 'Emmanuel Macron', 'emmanuel.macron@gmail.com', '$2y$12$2FR6YOo9FlGCwx4S6EtJ4edK82B5slfgDIOvMV41i0U.TlYXg3Quq', 'user', '2026-05-21 18:52:33', '9 Rue des Lilas, Bordeaux', '2026-06-22 19:33:27'),
 
@@ -328,7 +318,7 @@ INSERT INTO product_lists (id, user_id, name) VALUES
 (1, 5, 'Ma wishlist'),
 (2, 6, 'Tenues été'),
 (3, 7, 'Costumes préférés'),
-(4, 9, 'FLAG{THE_SERVER_TRUSTS_WHAT_YOU_SEND}');
+(4, 9, 'Pour mon anniv');
 
 -- ===========================================
 -- PRODUCT LIST ITEMS

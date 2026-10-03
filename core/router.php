@@ -14,14 +14,6 @@
 function allRoutes(): array
 {
     return [
-        // CTF
-
-        'session' => [
-            'GET' => [
-                'function' => 'showSession',
-                'params' => []
-            ]
-        ],
 
         // General pages
 
@@ -555,15 +547,6 @@ function protectRoute(array $route): array
         $route['name'] = 'home';
     }
 
-    // Restrict session page to Michael OLISE.
-    if ($route['name'] === 'session') {
-            $user = getCurrentUser();
-
-            if (($user['name'] ?? '') !== 'michael.olise@gmail.com') {
-                $route = $routes['home'];
-                $route['name'] = 'home';
-            }
-        }
 
     // Restrict administrator routes to administrators.
     if (($route['admin'] ?? false) === true && !$is_admin) {

@@ -9,7 +9,6 @@
  */
 function createReview(string $comment): void
 {
-    ctf03($_POST);
     
     $user = getCurrentUser();
     $user_id = (int) $user['id'];

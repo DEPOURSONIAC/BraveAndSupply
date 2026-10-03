@@ -13,7 +13,6 @@
 // ---------------
 // MODELS
 // ---------------
-require_once MODEL_PATH . '/CtfModel.php';
 require_once MODEL_PATH . '/AuthModel.php';
 require_once MODEL_PATH . '/CartModel.php';
 require_once MODEL_PATH . '/CategoryModel.php';
@@ -35,7 +34,6 @@ require_once SERVICE_PATH . '/PayPalService.php';
 // ---------------
 // CONTROLLERS
 // ---------------
-require_once CONTROLLER_PATH . '/CtfController.php';
 require_once CONTROLLER_PATH . '/AuthController.php';
 require_once CONTROLLER_PATH . '/HomeController.php';
 require_once CONTROLLER_PATH . '/LegalController.php';
